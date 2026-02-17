@@ -5,7 +5,7 @@ import { useAuthstore } from "../store/auth";
 
 const { Title, Text } = Typography;
 
-// Backend: 6–20 belgi, faqat harflar va raqamlar
+// Backend: 6–20 belgi, check
 const LOGIN_REGEX = /^[a-zA-Z0-9]{6,20}$/;
 
 const layout = {
@@ -13,7 +13,7 @@ const layout = {
   wrapperCol: { span: 24 },
 };
 
-export default function Login() {
+function Login() {
   const navigate = useNavigate();
   const login = useAuthstore((s) => s.login);
   const isLoading = useAuthstore((s) => s.isLoading);
@@ -78,14 +78,14 @@ export default function Login() {
             rules={[
               { required: true, message: "Login kiritilishi shart" },
               { min: 6, message: "Login kamida 6 ta belgi" },
-              { max: 20, message: "Login 20 tadan ortiq bo‘lmasin" },
+              { max: 20, message: "Login 20 tadan ortiq bo'lmasin" },
               {
                 pattern: LOGIN_REGEX,
-                message: "Faqat harflar va raqamlar (6–20 belgi)",
+                message: "Faqat harflar va raqamlar (6-20 belgi)",
               },
             ]}
           >
-            <Input placeholder="Login (6–20 belgi, harflar va raqamlar)" maxLength={20} />
+            <Input placeholder="Login (6-20 belgi)" maxLength={20} />
           </Form.Item>
 
           <Form.Item
@@ -93,7 +93,7 @@ export default function Login() {
             label="Parol"
             rules={[
               { required: true, message: "Parol kiritilishi shart" },
-              { min: 4, message: "Parol kamida 4 ta belgidan iborat bo'lishi kerak" },
+              { min: 4, message: "Parol kamida 8 ta belgidan iborat bo'lishi kerak" },
             ]}
           >
             <Input.Password placeholder="Parol" />
@@ -112,11 +112,13 @@ export default function Login() {
           </Form.Item>
 
           <div style={{ textAlign: "center", marginTop: 16 }}>
-            <Text type="secondary">Hisobingiz yo‘qmi? </Text>
-            <Link to="/register">Ro‘yxatdan o‘tish</Link>
+            <Text type="secondary">Hisobingiz yo'qmi? </Text>
+            <Link to="/register">Ro'yxatdan o'tish</Link>
           </div>
         </Form>
       </Card>
     </Flex>
   );
 }
+
+export default Login;

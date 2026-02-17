@@ -13,7 +13,11 @@ function Dashboardlayout() {
 
     return (
         <Layout style={{minHeight: "100vh"}}>
-            <Sider collapsed>
+            <Sider 
+            collapsible
+            width={220}
+            collapsedWidth={80}
+            >
                 <div style={{color: "white", padding: 16, fontWeight: 700}}>
                     Admin Panel
                 </div>

@@ -21,7 +21,7 @@ const columns = [
   { title: "Manzil", dataIndex: "location", width: 90 },
 ];
 
-export default function Cars() {
+function Cars() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [data, setData] = useState({
@@ -91,3 +91,5 @@ export default function Cars() {
     </div>
   );
 }
+
+export default Cars;

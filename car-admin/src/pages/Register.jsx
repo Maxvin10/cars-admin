@@ -8,7 +8,7 @@ const { Title, Text } = Typography;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_REGEX = /^\+?[0-9\s\-()]{9,}$/;
 
-// Backend: 6–20 belgi, faqat harflar va raqamlar
+// Backend: 6–20 belgi,check
 const LOGIN_REGEX = /^[a-zA-Z0-9]{6,20}$/;
 
 const layout = {
@@ -63,10 +63,10 @@ export default function Register() {
         bordered={false}
       >
         <Title level={3} style={{ marginBottom: 8, textAlign: "center" }}>
-          Ro‘yxatdan o‘tish
+          Ro'yxatdan o'tish
         </Title>
         <Text type="secondary" style={{ display: "block", textAlign: "center", marginBottom: 24 }}>
-          Barcha maydonlarni to‘ldiring
+          Barcha maydonlarni to'ldiring
         </Text>
 
         {error && (
@@ -90,9 +90,9 @@ export default function Register() {
         >
           <Form.Item
             name="fullName"
-            label="To‘liq ism"
+            label="To'liq ism"
             rules={[
-              { required: true, message: "To‘liq ism kiritilishi shart" },
+              { required: true, message: "To'liq ism kiritilishi shart" },
               { whitespace: true, message: "Ism bo'sh bo'lmasin" },
             ]}
           >
@@ -104,7 +104,7 @@ export default function Register() {
             label="Telefon raqam"
             rules={[
               { required: true, message: "Telefon raqam kiritilishi shart" },
-              { pattern: PHONE_REGEX, message: "To‘g‘ri telefon raqam kiriting" },
+              { pattern: PHONE_REGEX, message: "To'g'ri telefon raqam kiriting" },
             ]}
           >
             <Input placeholder="+998 90 123 45 67" />
@@ -115,8 +115,8 @@ export default function Register() {
             label="Email"
             rules={[
               { required: true, message: "Email kiritilishi shart" },
-              { type: "email", message: "To‘g‘ri email kiriting" },
-              { pattern: EMAIL_REGEX, message: "To‘g‘ri email kiriting" },
+              { type: "email", message: "To'g'ri email kiriting" },
+              { pattern: EMAIL_REGEX, message: "To'g'ri email kiriting" },
             ]}
           >
             <Input placeholder="user@example.com" />
@@ -127,15 +127,15 @@ export default function Register() {
             label="Login"
             rules={[
               { required: true, message: "Login kiritilishi shart" },
-              { min: 6, message: "Login kamida 6 ta belgidan iborat bo‘lishi kerak" },
-              { max: 20, message: "Login 20 tadan ortiq belgidan iborat bo‘lmasin" },
+              { min: 6, message: "Login kamida 6 ta belgidan iborat bo'lishi kerak" },
+              { max: 20, message: "Login 20 tadan ortiq belgidan iborat bo'lmasin" },
               {
                 pattern: LOGIN_REGEX,
-                message: "Faqat harflar va raqamlar (6–20 belgi)",
+                message: "Faqat harflar va raqamlar (6-20 belgi)",
               },
             ]}
           >
-            <Input placeholder="Faqat harflar va raqamlar, 6–20 belgi" maxLength={20} />
+            <Input placeholder="Faqat harflar va raqamlar, 6-20 belgi" maxLength={20} />
           </Form.Item>
 
           <Form.Item
@@ -143,7 +143,7 @@ export default function Register() {
             label="Parol"
             rules={[
               { required: true, message: "Parol kiritilishi shart" },
-              { min: 6, message: "Parol kamida 6 ta belgidan iborat bo‘lishi kerak" },
+              { min: 6, message: "Parol kamida 8 ta belgidan iborat bo'lishi kerak" },
             ]}
           >
             <Input.Password placeholder="Parol" />
@@ -176,7 +176,7 @@ export default function Register() {
               loading={isLoading}
               style={{ height: 44 }}
             >
-              Ro‘yxatdan o‘tish
+              Ro'yxatdan o'tish
             </Button>
           </Form.Item>
 
