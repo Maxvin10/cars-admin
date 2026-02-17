@@ -7,7 +7,7 @@ const {Sider, Header, Content} = Layout;
 
 function Dashboardlayout() {
     const location = useLocation();
-    const logout = useAuthstore((s) => s.length);
+    const logout = useAuthstore((s) => s.logout);
 
     const selectedKey = location.pathname.includes("/users") ? "users" : "cars";
 
