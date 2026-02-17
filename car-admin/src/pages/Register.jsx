@@ -1,5 +1,14 @@
 import React, { useEffect } from "react";
-import { Button, Card, Form, Input, Typography, Alert, Flex } from "antd";
+import {
+  Button,
+  Card,
+  Form,
+  Input,
+  Typography,
+  Alert,
+  Flex,
+  message,
+} from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthstore } from "../store/auth";
 
@@ -16,7 +25,7 @@ const layout = {
   wrapperCol: { span: 24 },
 };
 
-export default function Register() {
+function Register() {
   const navigate = useNavigate();
   const register = useAuthstore((s) => s.register);
   const isLoading = useAuthstore((s) => s.isLoading);
@@ -35,6 +44,7 @@ export default function Register() {
 
   const onFinish = async (values) => {
     const { fullName, phoneNumber, email, login, password } = values;
+
     const result = await register({
       fullName: fullName?.trim(),
       phoneNumber: phoneNumber?.trim(),
@@ -42,13 +52,13 @@ export default function Register() {
       login: login?.trim(),
       password,
     });
+
     if (result.success) {
-      if (result.hasToken) {
-        navigate("/", { replace: true });
-      } else {
-        navigate("/login", { replace: true });
-      }
+      message.success("Ro'yxatdan o'tish muvaffaqiyatli! Endi tizimga kiring");
+      navigate("/login", { replace: true });
+      return;
     }
+
   };
 
   return (
@@ -59,13 +69,20 @@ export default function Register() {
       vertical
     >
       <Card
-        style={{ width: "100%", maxWidth: 440, boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}
-        bordered={false}
+      variant="borderless"
+        style={{
+          width: "100%",
+          maxWidth: 440,
+          boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+        }}
       >
         <Title level={3} style={{ marginBottom: 8, textAlign: "center" }}>
           Ro'yxatdan o'tish
         </Title>
-        <Text type="secondary" style={{ display: "block", textAlign: "center", marginBottom: 24 }}>
+        <Text
+          type="secondary"
+          style={{ display: "block", textAlign: "center", marginBottom: 24 }}
+        >
           Barcha maydonlarni to'ldiring
         </Text>
 
@@ -104,7 +121,10 @@ export default function Register() {
             label="Telefon raqam"
             rules={[
               { required: true, message: "Telefon raqam kiritilishi shart" },
-              { pattern: PHONE_REGEX, message: "To'g'ri telefon raqam kiriting" },
+              {
+                pattern: PHONE_REGEX,
+                message: "To'g'ri telefon raqam kiriting",
+              },
             ]}
           >
             <Input placeholder="+998 90 123 45 67" />
@@ -127,15 +147,24 @@ export default function Register() {
             label="Login"
             rules={[
               { required: true, message: "Login kiritilishi shart" },
-              { min: 6, message: "Login kamida 6 ta belgidan iborat bo'lishi kerak" },
-              { max: 20, message: "Login 20 tadan ortiq belgidan iborat bo'lmasin" },
+              {
+                min: 6,
+                message: "Login kamida 6 ta belgidan iborat bo'lishi kerak",
+              },
+              {
+                max: 20,
+                message: "Login 20 tadan ortiq belgidan iborat bo'lmasin",
+              },
               {
                 pattern: LOGIN_REGEX,
                 message: "Faqat harflar va raqamlar (6-20 belgi)",
               },
             ]}
           >
-            <Input placeholder="Faqat harflar va raqamlar, 6-20 belgi" maxLength={20} />
+            <Input
+              placeholder="Faqat harflar va raqamlar, 6-20 belgi"
+              maxLength={20}
+            />
           </Form.Item>
 
           <Form.Item
@@ -143,7 +172,10 @@ export default function Register() {
             label="Parol"
             rules={[
               { required: true, message: "Parol kiritilishi shart" },
-              { min: 6, message: "Parol kamida 8 ta belgidan iborat bo'lishi kerak" },
+              {
+                min: 8,
+                message: "Parol kamida 8 ta belgidan iborat bo'lishi kerak",
+              },
             ]}
           >
             <Input.Password placeholder="Parol" />
@@ -189,3 +221,5 @@ export default function Register() {
     </Flex>
   );
 }
+
+export default Register;

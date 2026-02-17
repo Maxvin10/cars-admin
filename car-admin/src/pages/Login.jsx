@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { Button, Card, Form, Input, Typography, Alert, Flex } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthstore } from "../store/auth";
+import { api } from "../api/axios";
+
 
 const { Title, Text } = Typography;
 
@@ -43,8 +45,8 @@ function Login() {
       vertical
     >
       <Card
+      variant="borderless"
         style={{ width: "100%", maxWidth: 400, boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}
-        bordered={false}
       >
         <Title level={3} style={{ marginBottom: 8, textAlign: "center" }}>
           Tizimga kirish
@@ -93,7 +95,7 @@ function Login() {
             label="Parol"
             rules={[
               { required: true, message: "Parol kiritilishi shart" },
-              { min: 4, message: "Parol kamida 8 ta belgidan iborat bo'lishi kerak" },
+              { min: 8, message: "Parol kamida 8 ta belgidan iborat bo'lishi kerak" },
             ]}
           >
             <Input.Password placeholder="Parol" />

@@ -4,8 +4,6 @@ import { getUsers } from "../api/user";
 
 const { Title } = Typography;
 
-// NOTE: dataIndex'lar backend response'iga qarab o'zgaradi.
-// Hozircha eng ko'p uchraydigan fieldlarni qo'ydim.
 const columns = [
   { title: "ID", dataIndex: "id", width: 70 },
   { title: "Ism", dataIndex: "fullName", key: "fullName" },
